@@ -1,0 +1,21 @@
+fastapi            #Backend api created using FastAPI framework
+uvicorn            #ASGI server for running FastAPI applications
+python-multipart   #For handling file uploads in FastAPI(to upload pdfs)
+pypdf              #For handling PDF files(to extract text)
+fastembed          #(text to embeddings)
+faiss-cpu          #For creating and using FAISS indexes on CPU(to store and then search similar embeddings
+numpy              #For numerical computing  (used by FAISS) to handle arrys and numericall calculations)
+groq               #For interacting with the GROQ API (LLM access krne ke liye)
+python-dotenv      #For managing environment variables (to load the GROQ_API_KEY from .env file)
+
+
+
+# PDF Upload       → python-multipart
+# PDF Reading      → pypdf
+# Text Embeddings  → fastembed
+# Vector Search    → faiss-cpu
+# LLM Response     → groq
+# Backend API      → fastapi
+# Server           → uvicorn
+# Calculations     → numpy
+# API Key Security → python-dotenv
