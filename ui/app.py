@@ -9,10 +9,17 @@ st.title("EduRAG - Study Assistant")
 f = st.file_uploader("Upload PDF", type="pdf")
 if f and st.button("Process PDF"):
     r = requests.post(f"{API}/upload", files={"file": (f.name, f.getvalue(), "application/pdf")})
-    st.success(f"Indexed {r.json()['chunks']} chunks")
+    if r.status_code != 200:
+        st.error(f"Upload error {r.status_code}: {r.text}")
+    else:
+        st.success(f"Indexed {r.json()['chunks']} chunks")
 
 q = st.text_input("Ask a question")
 if q:
-    r = requests.post(f"{API}/ask", json={"question": q}).json()
-    st.write(r["answer"])
-    st.caption("Sources: " + ", ".join(r["sources"]))
+    r = requests.post(f"{API}/ask", json={"question": q})
+    if r.status_code != 200:
+        st.error(f"Backend error {r.status_code}: {r.text}")
+    else:
+        data = r.json()
+        st.write(data["answer"])
+        st.caption("Sources: " + ", ".join(data["sources"]))

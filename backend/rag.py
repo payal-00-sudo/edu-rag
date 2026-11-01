@@ -36,7 +36,7 @@ def ask(question, k=4):
     ids = [i for i in ids[0] if i != -1]
     context = "\n\n".join(chunks[i] for i in ids)
     r = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-120b",
         messages=[
             {"role": "system", "content": "Answer only from the context. If not found, say you don't know."},
             {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {question}"},
